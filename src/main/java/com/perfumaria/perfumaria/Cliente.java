@@ -1,6 +1,6 @@
 package com.perfumaria.perfumaria;
 
-public class Perfume {
+public class Cliente {
 
     private Long id;
     private String nome;
