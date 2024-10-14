@@ -1,10 +1,10 @@
 package com.perfumaria.perfumaria;
 
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,12 +28,12 @@ public class Perfume {
 
     @Column
     private double preço;
-    @ManyToMany(fetch = FetchType.EAGER)
-    Set<Pedido> pedidos;
+    @ManyToMany(mappedBy = "perfumes")
+    private List<Fornecedor> fornecedores;
 
     @ManyToMany
-    @JoinTable(name = "perfume_fornecedor", joinColumns = @JoinColumn(name = "perfume_id"), inverseJoinColumns = @JoinColumn(name = "fornecedor_id"))
-    Set<Fornecedor> fornecedores;
+    @JoinTable(name = "perfume_pedidos", joinColumns = @JoinColumn(name = "perfume_id"), inverseJoinColumns = @JoinColumn(name = "pedido_id"))
+    private List<Pedido> pedidos;
 
     public Long getId() {
         return id;
@@ -59,12 +59,8 @@ public class Perfume {
         this.preço = preço;
     }
 
-    public Set<Fornecedor> getFornecedores() { // Implementação do método
-        return fornecedores;
-    }
+    public void getPerfumes() {
 
-    public void setFornecedores(Set<Fornecedor> fornecedores) {
-        this.fornecedores = fornecedores;
     }
 
 }

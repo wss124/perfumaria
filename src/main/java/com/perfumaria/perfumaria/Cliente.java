@@ -1,6 +1,6 @@
 package com.perfumaria.perfumaria;
 
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,8 +23,8 @@ public class Cliente {
     @Column
     private String nome;
 
-    @OneToMany
-    Set<Pedido> pedidos;
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos;
 
     public Long getId() {
         return id;

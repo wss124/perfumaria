@@ -231,7 +231,7 @@ public class LinhadeComando implements CommandLineRunner {
             // Criação do pedido
             Pedido pedido = new Pedido();
             pedido.setCliente(cliente);
-            pedido.setPerfume(perfumes);
+            pedido.setPerfumes(perfumes);
             pedidoService.salvar(pedido);
             System.out.println("Pedido adicionado com sucesso!");
 
@@ -288,7 +288,7 @@ public class LinhadeComando implements CommandLineRunner {
     }
 
     private void removerFornecedor() {
-        System.out.print("ID do Fornecedor a remover: ");
+        System.out.print("ID do Fornecedor a ser removido: ");
         Long id = scanner.nextLong();
         scanner.nextLine();
         fornecedorService.deletar(id);
