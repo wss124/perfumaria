@@ -1,18 +1,21 @@
-package com.perfumaria.perfumaria;
+package com.perfumaria.perfumaria.Entity;
 
 import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_Cliente")
-public class Cliente {
+@Table(name = "tb_Fornecedor")
+public class Fornecedor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +26,9 @@ public class Cliente {
     @Column
     private String nome;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<Pedido> pedidos;
+    @ManyToMany
+    @JoinTable(name = "fornecedor_perfumes", joinColumns = @JoinColumn(name = "fornecedor_id"), inverseJoinColumns = @JoinColumn(name = "perfume_id"))
+    private List<Perfume> perfumes;
 
     public Long getId() {
         return id;

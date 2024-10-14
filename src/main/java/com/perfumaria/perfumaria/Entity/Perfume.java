@@ -1,4 +1,4 @@
-package com.perfumaria.perfumaria;
+package com.perfumaria.perfumaria.Entity;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_Fornecedor")
-public class Fornecedor {
+@Table(name = "tb_Perfume")
+public class Perfume {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +26,14 @@ public class Fornecedor {
     @Column
     private String nome;
 
+    @Column
+    private double preço;
+    @ManyToMany(mappedBy = "perfumes")
+    private List<Fornecedor> fornecedores;
+
     @ManyToMany
-    @JoinTable(name = "fornecedor_perfumes", joinColumns = @JoinColumn(name = "fornecedor_id"), inverseJoinColumns = @JoinColumn(name = "perfume_id"))
-    private List<Perfume> perfumes;
+    @JoinTable(name = "perfume_pedidos", joinColumns = @JoinColumn(name = "perfume_id"), inverseJoinColumns = @JoinColumn(name = "pedido_id"))
+    private List<Pedido> pedidos;
 
     public Long getId() {
         return id;
@@ -44,6 +49,18 @@ public class Fornecedor {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public double getPreço() {
+        return preço;
+    }
+
+    public void setPreço(double preço) {
+        this.preço = preço;
+    }
+
+    public void getPerfumes() {
+
     }
 
 }

@@ -10,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.perfumaria.perfumaria.Entity.Cliente;
+import com.perfumaria.perfumaria.Entity.Fornecedor;
+import com.perfumaria.perfumaria.Entity.Pedido;
+import com.perfumaria.perfumaria.Entity.Perfume;
 import com.perfumaria.perfumaria.Services.ClienteService;
 import com.perfumaria.perfumaria.Services.FornecedorService;
 import com.perfumaria.perfumaria.Services.PedidoService;
@@ -42,7 +46,7 @@ public class LinhadeComando implements CommandLineRunner {
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             int escolha = scanner.nextInt();
-            scanner.nextLine(); // Consumir quebra de linha
+            scanner.nextLine();
 
             switch (escolha) {
                 case 1 -> menuCliente();
@@ -58,7 +62,6 @@ public class LinhadeComando implements CommandLineRunner {
         }
     }
 
-    // ===== CRUD de Cliente =====
     private void menuCliente() {
         System.out.println("\n=== Gerenciamento de Clientes ===");
         System.out.println("1. Adicionar Cliente");
@@ -117,7 +120,6 @@ public class LinhadeComando implements CommandLineRunner {
         System.out.println("Cliente removido com sucesso!");
     }
 
-    // ===== CRUD de Perfume =====
     private void menuPerfume() {
         System.out.println("\n=== Gerenciamento de Perfumes ===");
         System.out.println("1. Adicionar Perfume");
@@ -185,7 +187,6 @@ public class LinhadeComando implements CommandLineRunner {
         System.out.println("Perfume removido com sucesso!");
     }
 
-    // ===== CRUD de Pedido =====
     private void menuPedido() {
         System.out.println("\n=== Gerenciamento de Pedidos ===");
         System.out.println("1. Adicionar Pedido");
@@ -207,16 +208,14 @@ public class LinhadeComando implements CommandLineRunner {
         try {
             System.out.print("ID do Cliente: ");
             Long clienteId = scanner.nextLong();
-            scanner.nextLine(); // Consumir a nova linha
+            scanner.nextLine();
 
-            // Busca o cliente pelo ID
             Cliente cliente = clienteService.buscarPorId(clienteId)
                     .orElseThrow(() -> new RuntimeException("Cliente não encontrado."));
 
             System.out.print("IDs dos Perfumes (separados por vírgula): ");
             String[] perfumeIds = scanner.nextLine().split(",");
 
-            // Busca os perfumes pelo ID e verifica se todos existem
             List<Perfume> perfumes = Arrays.stream(perfumeIds)
                     .map(id -> {
                         try {
@@ -228,7 +227,6 @@ public class LinhadeComando implements CommandLineRunner {
                     })
                     .toList();
 
-            // Criação do pedido
             Pedido pedido = new Pedido();
             pedido.setCliente(cliente);
             pedido.setPerfumes(perfumes);
@@ -255,7 +253,6 @@ public class LinhadeComando implements CommandLineRunner {
         System.out.println("Pedido removido com sucesso!");
     }
 
-    // ===== CRUD de Fornecedor =====
     private void menuFornecedor() {
         System.out.println("\n=== Gerenciamento de Fornecedores ===");
         System.out.println("1. Adicionar Fornecedor");

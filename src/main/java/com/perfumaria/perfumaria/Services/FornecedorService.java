@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.perfumaria.perfumaria.Fornecedor;
+import com.perfumaria.perfumaria.Entity.Fornecedor;
 import com.perfumaria.perfumaria.Repository.FornecedorRepository;
 
 @Service

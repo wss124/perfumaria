@@ -1,4 +1,4 @@
-package com.perfumaria.perfumaria;
+package com.perfumaria.perfumaria.Entity;
 
 import java.util.List;
 
