@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.perfumaria.perfumaria.Perfume;
 
-public interface ProdutoRepository extends JpaRepository<Perfume, Long> {
+public interface PerfumeRepository extends JpaRepository<Perfume, Long> {
 
 }
